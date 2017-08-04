@@ -1,0 +1,118 @@
+body {
+  --tooltip-top-pos: 0px;
+  --tooltip-left-pos: 0px;
+  --tooltip-color: #2f2f31;
+  background-color: #EEEEEE;
+  font-family: 'Helvetica Neue', sans-serif; }
+
+button:focus, button:active {
+  background-image: none;
+  outline: none;
+  box-shadow: none; }
+
+span.text-selection {
+  background-color: rgba(255, 0, 0, 0.2); }
+
+.container {
+  padding: 4%; }
+
+.document-container {
+  padding: 2%;
+  background-color: #FFFFFF; }
+
+.title {
+  text-align: center;
+  font-size: 25px; }
+
+.text-container {
+  text-align: justify; }
+
+.tooltip-container {
+  position: absolute;
+  top: var(--tooltip-top-pos);
+  left: var(--tooltip-left-pos); }
+
+.tooltip {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  background-color: #343436;
+  border-radius: 2px;
+  z-index: 100;
+  animation: fadeIn .3s 1; }
+
+.tooltip::before {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 0;
+  height: 0;
+  content: "";
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-color: #343436 transparent transparent transparent;
+  transform: scale(1) translateY(80%);
+  animation: peekOut .5s 1;
+  z-index: 5; }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes peekOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-20%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(80%); } }
+
+button.toggle-form {
+  margin-left: 5px;
+  background: none;
+  border: none; }
+  button.toggle-form span {
+    font-size: 15px; }
+
+button.tooltip-close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  color: #FFFFFF;
+  background-color: #000000;
+  border: none;
+  border-radius: 50%; }
+
+.tooltip-comments-form {
+  height: 18px;
+  width: 200px;
+  margin-top: 5px; }
+
+.comments-container {
+  margin-top: 50px; }
+  .comments-container .comment {
+    margin-bottom: 1%;
+    padding: 1% 2%;
+    background-color: #FFFFFF;
+    animation: fadeIn .3s 1; }
+    .comments-container .comment .comment-text {
+      display: inline-block; }
+    .comments-container .comment .comment-delete {
+      margin-left: 20px;
+      padding: 8px 16px;
+      color: #FFFFFF;
+      background-color: #03a9f4;
+      border: none;
+      border-radius: 2px; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }

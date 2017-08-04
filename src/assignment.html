@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		    body {
+		    	--tooltip-top-pos: 0px;
+		    	--tooltip-left-pos: 0px;
+		    	--tooltip-color: #2f2f31;
+		    }
+
+		    .text-container {
+		    	padding: 30px;
+		    	text-align: justify;
+		    }
+
+			.tooltip {
+				position: absolute;
+				top: var(--tooltip-top-pos);
+				left: var(--tooltip-left-pos);
+				width: 100px;
+				height: 30px;
+				background-color: black;
+				border: 1px solid black;
+			}
+
+			.comments-form {
+
+			}
+
+			.comments-container {
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="tooltip">
+		<button>🎨</button>
+		<button>💬</button>
+		<button>✕</button>
+	</div>
+	<div class="tooltip-comments-form">
+		<form>
+			<textarea></textarea>
+		</form>
+	</div>
+	<div class="text-container">
+		<p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+	</div>
+	<div class="comments-container"></div>
+
+	<script>
+		document.addEventListener('mouseup', getSelectedText);
+        
+        const bodyStyles = window.getComputedStyle(document.body);
+
+		let commentText;
+		let commentsContainer = document.querySelector('.comments-container');
+		let mouseDownPos;
+
+		function getSelectedText(e) {
+			e.stopPropagation();
+			if (e.target.className === 'text') {
+				let muText = window.getSelection();
+				let checkSelecLength = muText.extentOffset - muText.baseOffset;
+				if (checkSelecLength > 0) {
+					let muTextRange = muText.getRangeAt(0); //get the text range
+					let muTextRect = muTextRange.getClientRects();
+
+				    commentText = (muText);
+				    let tooltipYPos = (muTextRect[0].top) - 35;
+				    let tooltipXPos = muTextRect[0].left;
+				    document.body.style.setProperty('--tooltip-top-pos', `${tooltipYPos}px`);
+				    document.body.style.setProperty('--tooltip-left-pos', `${tooltipXPos}px`);
+				    
+				    const comment = `<div class="comment-container">${commentText}</div>`
+				    commentsContainer.innerHTML += (comment);
+				}
+				
+			}
+		}
+
+		
+	</script>
+	</body>
+</html>
