@@ -12,7 +12,7 @@ button:focus, button:active {
 
 span.text-selection {
   background-color: rgba(255, 0, 0, 0.2);
-  border: 2px dashed tomato;
+  border: 1px dashed tomato;
   animation: fadeIn .3s 1; }
 
 .container {
