@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import data from './data.js';
 import Parser from 'html-react-parser';
-import CommentsTooltip from './commentsTooltip';
+import CommentsTooltip from './CommentsTooltip';
 
 class App extends Component {  
   constructor() {

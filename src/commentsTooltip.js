@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import DOMPurify from 'dompurify';
 
-class App extends Component {  
+class CommentsTooltip extends Component {  
   constructor(props) {
     super(props);
     this.state = {
@@ -197,4 +197,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default CommentsTooltip;
