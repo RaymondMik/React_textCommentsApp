@@ -27,8 +27,7 @@ class CommentsTooltip extends Component {
     };
 
     window.addEventListener('mouseup', this.getSelectedText.bind(this), true);
-    window.addEventListener('mousedown', this.handleClickEvent.bind(this));
-
+    window.addEventListener('mousedown', this.handleMouseDownEvent.bind(this));
   }
 
   toggleCommentForm(e) {
@@ -82,9 +81,24 @@ class CommentsTooltip extends Component {
     this.setState({
       comments: newComments
     });
+    this.props.hideSelectedText();
   }
 
-  handleClickEvent(ev) {
+  showSelection(ev) {
+    let elementClass = ev.target.className;
+    if (elementClass === 'comment') {
+      this.props.showSelectedText(ev, this.state.comments);
+    }
+  }
+
+  hideSelection(ev) {
+    let elementClass = ev.target.className;
+    if (elementClass === 'comment') {
+      this.props.hideSelectedText();
+    }
+  }
+
+  handleMouseDownEvent(ev) {
     let selText = window.getSelection();
     let checkSelecLength = selText.extentOffset - selText.baseOffset;
 
@@ -94,8 +108,6 @@ class CommentsTooltip extends Component {
           showCommentForm: false,
         })
     }
-
-    this.props.selectText(ev, this.state.comments);
   }
 
   getSelectedText(e) {
@@ -159,7 +171,13 @@ class CommentsTooltip extends Component {
         return (
           Object.keys(comments).map( (i) => {
             return (
-              <div key={i} id={`comment-${comments[i].id}`} className="comment"> 
+              <div 
+                key={i} 
+                id={`comment-${comments[i].id}`} 
+                className="comment" 
+                onMouseEnter={this.showSelection.bind(this)}
+                onMouseLeave={this.hideSelection.bind(this)}
+              > 
                 <div className="comment-text">
                   {comments[i].text} 
                 </div>

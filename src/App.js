@@ -14,8 +14,7 @@ class App extends Component {
 
   }
 
-  selectText(ev, stateComments) {
-    if (ev.target.className === 'comment') {
+  showSelectedText(ev, stateComments) {
       this.setState({
         documentText: data.text
       });
@@ -36,11 +35,12 @@ class App extends Component {
       this.setState({
         documentText: text
       });
-    } else {
-      this.setState({
-        documentText: data.text
-      })
-    }
+  }
+
+  hideSelectedText() {
+    this.setState({
+      documentText: data.text
+    })
   }
 
   render() {
@@ -54,7 +54,8 @@ class App extends Component {
         </div>
         <CommentsTooltip 
           data={data}
-          selectText={this.selectText.bind(this)}
+          showSelectedText={this.showSelectedText.bind(this)}
+          hideSelectedText={this.hideSelectedText.bind(this)}
         />
       </div>
     );
