@@ -26,7 +26,7 @@ class App extends Component {
       let selectedText;
 
       for (let comment of comments) {
-          if (parseInt(id) === comment.id) {
+          if (parseInt(id, 9) === comment.id) {
             selectedText = text.substring(comment.baseOffset, comment.extentOffset);
             text = text.replace(selectedText, `<span id="${comment.id}" className="text-selection">${selectedText}</span>`);
           }

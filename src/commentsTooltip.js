@@ -71,8 +71,8 @@ class CommentsTooltip extends Component {
     let commentId = ev.target.getAttribute('data-comment-id');
     let index;
     for (let i in this.state.comments) {
-        if (this.state.comments[i].id == commentId) {
-          index = parseInt(i);
+        if (this.state.comments[i].id === commentId) {
+          index = parseInt(i, 9);
         };
     }
 
@@ -145,9 +145,6 @@ class CommentsTooltip extends Component {
             tooltipX: tooltipYPos,
             tooltipY: tooltipXPos
           })
-
-          document.body.style.setProperty('--tooltip-top-pos', `${tooltipYPos}px`);
-          document.body.style.setProperty('--tooltip-left-pos', `${tooltipXPos}px`);
             
         } else {
           this.setState({
@@ -194,7 +191,7 @@ class CommentsTooltip extends Component {
 
     return (
       <div>
-        <div className="tooltip-container">
+        <div className="tooltip-container" style={{top: this.state.tooltipX, left: this.state.tooltipY}}>
           <div className={`tooltip ${tooltipDisplayClass}`}>
             <button className="toggle-form" onClick={this.toggleCommentForm.bind(this)}><span role="img" aria-label="comment">💬</span></button>
             <button className="tooltip-close" onClick={this.hideTooltip.bind(this)}>✕</button>

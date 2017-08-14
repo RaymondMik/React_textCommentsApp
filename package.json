@@ -2,7 +2,7 @@
   "name": "react-starter-kit",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://labs.ramonmiklus.com/textcommentapp",
+  "homepage": "http://labs.ramonmiklus.com/textcommentapp",
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
