@@ -71,8 +71,8 @@ class CommentsTooltip extends Component {
     let commentId = ev.target.getAttribute('data-comment-id');
     let index;
     for (let i in this.state.comments) {
-        if (this.state.comments[i].id === commentId) {
-          index = parseInt(i, 9);
+        if (this.state.comments[i].id == commentId) {
+          index = parseInt(i);
         };
     }
 
