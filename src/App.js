@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data.js';
+import data from './data.json';
 import Parser from 'html-react-parser';
 import CommentsTooltip from './CommentsTooltip';
 
@@ -11,7 +11,6 @@ class App extends Component {
       documentTitle: data.title,
       documentText: data.text,
     };
-
   }
 
   showSelectedText(ev, stateComments) {

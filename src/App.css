@@ -24,7 +24,8 @@ span.text-selection {
   font-size: 25px; }
 
 .text-container {
-  text-align: justify; }
+  text-align: justify;
+  line-height: 1.2; }
 
 .tooltip-container {
   position: absolute;
@@ -100,15 +101,17 @@ button.tooltip-close {
     padding: 1% 2%;
     background-color: #FFFFFF;
     animation: fadeIn .3s 1; }
+    .comments-container .comment .comment-details .username {
+      padding: 3px;
+      margin-right: 20px;
+      background-color: #EEEEEE;
+      color: #AAAAAA; }
     .comments-container .comment .comment-text {
-      display: inline-block; }
+      display: inline-block;
+      margin-top: 5px; }
     .comments-container .comment .comment-delete {
-      margin-left: 20px;
-      padding: 8px 16px;
-      color: #FFFFFF;
-      background-color: #03a9f4;
-      border: none;
-      border-radius: 2px; }
+      color: #03A9F4;
+      text-decoration: none; }
 
 .show {
   display: block; }

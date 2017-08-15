@@ -1,3 +1,12 @@
+$primary-color: #03A9F4 
+$background-color: #FFFFFF
+$tooltip-background: #343436
+$tooltip-btn-background: #000000
+$text-selection-background: rgba(255, 0, 0, 0.2)
+$text-selection-border: tomato
+$comment-username-background: #EEEEEE
+$comment-username-text: #AAAAAA
+
 body 
   background-color: #EEEEEE
   font-family: 'Helvetica Neue', sans-serif
@@ -10,8 +19,8 @@ button
     box-shadow: none
 
 span.text-selection
-  background-color: rgba(255, 0, 0, 0.2)
-  border: 1px dashed tomato
+  background-color: $text-selection-background
+  border: 1px dashed $text-selection-border
   animation: fadeIn .3s 1
 
 .container
@@ -19,7 +28,7 @@ span.text-selection
 
 .document-container
   padding: 2%
-  background-color: #FFFFFF
+  background-color: $background-color
 
 .title
   text-align: center
@@ -27,6 +36,7 @@ span.text-selection
 
 .text-container 
   text-align: justify
+  line-height: 1.2
 
 .tooltip-container 
   position: absolute
@@ -37,7 +47,7 @@ span.text-selection
   position: relative
   width: 100px
   height: 30px
-  background-color: #343436
+  background-color: $tooltip-background
   border-radius: 2px
   z-index: 100
   animation: fadeIn .3s 1
@@ -52,7 +62,7 @@ span.text-selection
   border-left: 10px solid transparent
   border-right: 10px solid transparent
   border-top: 10px solid transparent
-  border-color: #343436 transparent transparent transparent
+  border-color: $tooltip-background transparent transparent transparent
   transform: scale(1) translateY(80%)
   animation: peekOut .5s 1
   z-index: 5
@@ -85,8 +95,8 @@ button.tooltip-close
     width: 15px
     height: 15px
     padding: 0
-    color: #FFFFFF
-    background-color: #000000
+    color: $background-color
+    background-color: $tooltip-btn-background
     border: none
     border-radius: 50%
 
@@ -100,17 +110,21 @@ button.tooltip-close
   .comment
     margin-bottom: 1%
     padding: 1% 2%
-    background-color: #FFFFFF
+    background-color: $background-color
     animation: fadeIn .3s 1
+    .comment-details
+      .username
+        padding: 3px
+        margin-right: 20px
+        background-color: $comment-username-background
+        color: $comment-username-text
     .comment-text
       display: inline-block
+      margin-top: 5px
     .comment-delete
-      margin-left: 20px
-      padding: 8px 16px
-      color: #FFFFFF
-      background-color: #03a9f4
-      border: none
-      border-radius: 2px
+      color: $primary-color
+      text-decoration: none
+
 
 .show
   display: block

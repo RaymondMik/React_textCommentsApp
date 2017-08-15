@@ -19,12 +19,17 @@ class CommentsTooltip extends Component {
       comments: [
         {
           id: 1,
-          text: 'A default comment',
+          text: 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?',
+          userName: 'TestUser',
+          timestamp: 1502825033,
           baseOffset: 58,
           extentOffset: 100
         }
       ]
     };
+
+    var ts = Math.round(new Date().getTime() / 1000);
+    console.log(ts);
 
     window.addEventListener('mouseup', this.getSelectedText.bind(this), true);
     window.addEventListener('mousedown', this.handleMouseDownEvent.bind(this));
@@ -49,10 +54,13 @@ class CommentsTooltip extends Component {
 
     let comments = this.state.comments;
     let newId = comments.length > 0 ? (comments[comments.length - 1].id) + 1 : 0;
+    let ts = Math.round(new Date().getTime() / 1000);
 
     const newComment = {
       id: newId,
+      userName: 'TestUser',
       text: DOMPurify.sanitize(this.refs.commentText.value),
+      timestamp: ts,
       baseOffset: this.state.currentBaseOffset,
       extentOffset: this.state.currentExtentOffset
     }
@@ -60,14 +68,16 @@ class CommentsTooltip extends Component {
     this.setState({
       currentBaseOffset: null,
       currentExtentOffset: null,
-      comments: [...this.state.comments, newComment]
+      comments: [...this.state.comments, newComment],
+      showTooltip: false,
+      showCommentForm: false
     });
 
     this.refs.commentForm.reset();
   }
 
   deleteComment(ev) {
-    ev.preventDefault();
+    console.log(ev.target.getAttribute('data-comment-id'));
     let commentId = ev.target.getAttribute('data-comment-id');
     let index;
     for (let i in this.state.comments) {
@@ -175,10 +185,15 @@ class CommentsTooltip extends Component {
                 onMouseEnter={this.showSelection.bind(this)}
                 onMouseLeave={this.hideSelection.bind(this)}
               > 
+                <div className="comment-details">
+                  <small>
+                    From: <span className="username">{comments[i].userName}</span>
+                    <a href="#/" className="comment-delete" data-comment-id={comments[i].id} onClick={this.deleteComment.bind(this)}>Delete</a>
+                  </small>
+                </div>
                 <div className="comment-text">
                   {comments[i].text} 
                 </div>
-                <button className="comment-delete" data-comment-id={comments[i].id} onClick={this.deleteComment.bind(this)}>Delete</button>
               </div> 
               );
           })
